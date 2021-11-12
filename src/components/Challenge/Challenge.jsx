@@ -103,7 +103,7 @@ const Challenge = (props) => {
       {console.log('2', {props})} */}
       <ProfileData employee={props}/>
       {!addNew ? 
-      <Fragment>
+      <Fragment className='challenges-fragment'>
         <SelectSort handleSorting = {handleSorting} />
         <br></br>
         <h2 className='challenges_heading'>List of Challenges</h2>
@@ -135,8 +135,9 @@ const Challenge = (props) => {
             );
           })}
       </Fragment> : <NewItem getData={getData} submitData={submitData} />}
-      
-      {!addNew && <> <strong>Click on Add New to add your Idea or Challenge</strong> <button className="rdr_btn" onClick={() => addNewRow()}>Add New</button></>}
+      <div className='add-new--container'>
+        {!addNew && <> <strong className='add-new--text'>Click on Add New to add your Idea or Challenge</strong><br/> <button className="rdr_btn" onClick={() => addNewRow()}>Add New</button></>}
+      </div>
     </div>
 
   );
