@@ -1,0 +1,29 @@
+button{
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px 30px;
+    max-width: 320px;
+    border-radius: 50px;
+    transition: 0.5s;
+    color: #3498db;
+    border: 2px solid #3498db;
+    text-decoration: none;
+}
+button:hover{
+    background-color: #3498db;
+    color: white;
+}
+.container>div{
+    display: flex;
+    text-align: left;
+    width: 350px;
+    justify-content: space-between;
+}
+.drop{
+   margin-right:90%;
+   
+    
+}
+.dropl{
+    margin-left: 46%;
+}
