@@ -19,7 +19,7 @@
   --webkit-transform: translateY(-3px);
   z-index: 100;
 }
-
+/* 
 .add_button{
     
     margin-left: 60%;
@@ -30,17 +30,26 @@
     border: 1px solid rgb(94, 93, 93);
     outline: none;
     cursor: pointer;
-}
+} */
 
  .challenge_icon {
      color: paleturquoise;
  }
 
+ .challenge_icon--vote {
+    color: paleturquoise;
+}
+
+@media only screen and (min-width: 769px) {
 .add-new--container {
+    margin-left: 4%;
+    position: absolute;
     text-align: left;
+    top: 15%;
+}
 }
 
 .add-new--text {
     width: 30%;
     line-height: 1em;
-}
+};
