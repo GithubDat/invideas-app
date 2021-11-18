@@ -39,7 +39,7 @@ function NewItem({ getData, submitData }) {
             <option value="Feature">Feature</option>
           </select>
         </div>
-        <button className="rdr_btn" onClick={() => submitData()}>Submit</button>
+        <button className="rdr_btn ideas-button" onClick={() => submitData()}>Submit</button>
       </div>
     </div>
   );
