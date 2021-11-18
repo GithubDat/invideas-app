@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css'
-import {Link} from 'react-router-dom';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 export default function Login({getId}) {
     // const [id, getId] = useState();
@@ -13,7 +13,7 @@ export default function Login({getId}) {
                 </div>
                 
             <div>
-               <Link to='/home'> <button className='Login_button'>Login</button></Link>
+               <Link to='/home'> <button className='Login_button ideas-button'>Login</button></Link>
              </div>   
             </div>
         </div>
