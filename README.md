@@ -1,5 +1,7 @@
 # invideas-app
 
+This is the source code for invideas app.
+
 # Starting the server
 
 The server of this project is **newbox-server**. To start the server, go to this diretory using cd and 
