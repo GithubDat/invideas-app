@@ -14,15 +14,15 @@ const Challenge = (props) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [row, setRow] = useState({});
+  const url = process.env.REACT_APP_API;
 
   useEffect(() => {
-    const url = "http://localhost:3002/challenges";
     axios
       .get(url)
       .then(response => {
         // console.log('promise fulfilled')
         setChallenges(response.data);
-        setLoading(false);
+        setLoading(true);
       })
       .catch(('Error occured in getting challenges'))
     // if (!localStorage.getItem('challengeData')) {
@@ -55,8 +55,8 @@ const Challenge = (props) => {
     var now = new Date();
     //var currDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
     const newObj = { id: uuid(), ...row, likes: 0, display: false, createdDate: now };
-    axios.post('http://localhost:3002/challenges', newObj)
-      .then(response => setChallenges([...challenges, response.data]), setAddNew(false))
+    axios.post(url, newObj)
+      .then(response => setChallenges([...challenges, response.data]), setLoading(true), setAddNew(false))
       .catch(() => {setError('Post challenge data not successfull'); return error;});
   }
 
@@ -68,8 +68,8 @@ const Challenge = (props) => {
     data.display = !(data.display);
     data.likes = flag ? (data.likes + 1) : (data.likes - 1)
 
-    axios.put(`http://localhost:3002/challenges/${data.id}`, data)
-      .then(response => setChallenges([...challenges]))
+    axios.put(url/`${data.id}`, data)
+      .then(response => setChallenges([...challenges]), setLoading(true))
       .catch(() => {setError(`Vote challenge not successful for ${data.id}`)});
   }
 
@@ -83,7 +83,7 @@ const Challenge = (props) => {
     };
     const sortProperty = types[e.target.value];
     const sorted = [...challenges].sort((a, b) => b[sortProperty] - a[sortProperty]);
-    console.log('AA', sorted);
+    console.log('AA sorted', sorted);
     setChallenges(sorted);
   }
 
@@ -100,7 +100,7 @@ const Challenge = (props) => {
     <div className="hole">
 
       <ProfileData employee={props}/>
-      {!addNew ? 
+      {!addNew ? loading &&
       <Fragment>
         <div className='challenges-fragment'>
         <SelectSort handleSorting = {handleSorting} />
@@ -136,7 +136,7 @@ const Challenge = (props) => {
           </div>
       </Fragment> : <NewItem getData={getData} submitData={submitData} />}
       <div className='add-new--container'>
-        {!addNew && <> <strong className='add-new--text'>Click on Add New to add your Idea or Challenge</strong><br/> <button className="rdr_btn ideas-button" onClick={() => addNewRow()}>Add New</button></>}
+        {!addNew && loading && <> <strong className='add-new--text'>Click on Add New to add your Idea or Challenge</strong><br/> <button className="rdr_btn ideas-button" onClick={() => addNewRow()}>Add New</button></>}
       </div>
     </div>
 
